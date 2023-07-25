@@ -72,7 +72,6 @@ int execute_external_command(char **argv)
 
 int main(int argc, char **argv)
 {
-	char *prompt_message = "prompt$ ";
 	char *lineptr = NULL;
 	char *lptr_dup = NULL;
 	size_t n = 0;
@@ -88,7 +87,7 @@ int main(int argc, char **argv)
 	{
 		argv = NULL;
 
-		printf("%s", prompt_message);
+		write(1, "prompt$ ", strlen("prompt$ "));
 		inputL = getline(&lineptr, &n, stdin);
 
 		if (inputL == -1)
