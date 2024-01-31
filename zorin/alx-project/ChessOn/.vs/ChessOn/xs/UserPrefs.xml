@@ -1,0 +1,29 @@
+﻿<Properties StartupConfiguration="{42878841-5221-4620-9576-3900679571E2}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ChessLog/chesslog.cs">
+    <Files>
+      <File FileName="ChessLog/board.cs" Line="10" Column="76" />
+      <File FileName="ChessLog/chesslog.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ChessOn" expanded="True">
+            <Node name="ChessLog" expanded="True">
+              <Node name="chesslog.cs" selected="True" />
+            </Node>
+            <Node name="ChessUI" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.ChessLog FirstBuild="True" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.ChessOn FirstBuild="True" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.ChessUI FirstBuild="True" />
+</Properties>
