@@ -5,13 +5,16 @@ set -e
 USER_NAME="student"
 YOURC="/home/$USER/.bashrc"
 
-if [ -n "$ZSH_VERSION" ] || [[ "$SHELL" == *"zsh"* ]]; then
+USER_SHELL=$(getent passwd "$USER_NAME" | cut -d: -f7)
+
+# Assign the correct config file based on the system entry
+if [[ "$USER_SHELL" == *"zsh"* ]]; then
     BASHRC="/home/$USER_NAME/.zshrc"
+elif [ -n "$ZSH_VERSION" ] || [[ "$SHELL" == *"zsh"* ]]; then
     YOURC="/home/$USER/.zshrc"
-elif [ -n "$BASH_VERSION" ] || [[ "$SHELL" == *"bash"* ]]; then
+elif [[ "$USER_SHELL" == *"bash"* ]]; then
     BASHRC="/home/$USER_NAME/.bashrc"
 else
-    # Fallback default
     BASHRC="$HOME/.profile"
 fi
 
