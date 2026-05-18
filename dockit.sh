@@ -3,8 +3,17 @@
 set -e
 
 USER_NAME="student"
-BASHRC="/home/$USER_NAME/.bashrc"
 YOURC="/home/$USER/.bashrc"
+
+if [ -n "$ZSH_VERSION" ] || [[ "$SHELL" == *"zsh"* ]]; then
+    BASHRC="/home/$USER_NAME/.zshrc"
+    YOURC="/home/$USER/.zshrc"
+elif [ -n "$BASH_VERSION" ] || [[ "$SHELL" == *"bash"* ]]; then
+    BASHRC="/home/$USER_NAME/.bashrc"
+else
+    # Fallback default
+    BASHRC="$HOME/.profile"
+fi
 
 print_help() {
 cat <<EOF
