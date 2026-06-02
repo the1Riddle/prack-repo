@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Auto Play Next Video",
+  "version": "1.0",
+  "description": "Automatically clicks the play button on my favorite video site.",
+  "permissions": [
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://www.digikenacademy.africa/*"], 
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ]
+}
