@@ -13,7 +13,7 @@ to get started:
   3. on chrome, click unpack extension then select the vplayx directory
   4. on firefox, click debug extension then select the manifest file in
       in the vplayx directory
-  5. Yo done, you can not user it
+  5. You are done and can now use it
 
 for more infomation check:
                     vplayx/content.js
