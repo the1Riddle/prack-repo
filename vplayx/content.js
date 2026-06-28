@@ -8,32 +8,83 @@
  * by: whoever wrote it.
  */
 
+console.log("[vplayx] Extension loaded");
+
+let currentVideo = null;
 let lastUrl = location.href;
 
-function autoPlayVideo() {
-    const video = document.querySelector('video');
+function tryPlay(video) {
+    if (!video) return;
 
-    if (video && video.paused) {
-        video.play().catch(() => {});
-        return;
-    }
+    console.log("[vplayx] Trying to play...", video);
 
-    // Fallback to clicking play button
-    const playButton = document.querySelector('.play-button-class');
+    video.play()
+        .then(() => console.log("[vplayx] Playing"))
+        .catch(err => console.log("[vplayx] play() failed:", err));
+}
 
-    if (playButton) {
-        playButton.click();
+function hookVideo(video) {
+    if (video === currentVideo) return;
+
+    currentVideo = video;
+
+    console.log("[vplayx] New video detected");
+
+    // Try immediately
+    tryPlay(video);
+
+    // Try when metadata arrives
+    video.addEventListener("loadedmetadata", () => {
+        console.log("[vplayx] loadedmetadata");
+        tryPlay(video);
+    });
+
+    // Try when it can play
+    video.addEventListener("canplay", () => {
+        console.log("[vplayx] canplay");
+        tryPlay(video);
+    });
+
+    // Keep trying for 10 seconds because React players
+    // often replace the element after creation.
+    let attempts = 0;
+
+    const interval = setInterval(() => {
+        attempts++;
+
+        if (video.paused) {
+            console.log("[vplayx] Retry", attempts);
+            tryPlay(video);
+        } else {
+            console.log("[vplayx] Success");
+            clearInterval(interval);
+        }
+
+        if (attempts >= 20) {
+            clearInterval(interval);
+        }
+    }, 500);
+}
+
+function scan() {
+    const video = document.querySelector("video");
+
+    if (video) {
+        hookVideo(video);
     }
 }
 
 const observer = new MutationObserver(() => {
-    autoPlayVideo();
+    scan();
 
     if (location.href !== lastUrl) {
         lastUrl = location.href;
 
-        setTimeout(autoPlayVideo, 1000);
-        setTimeout(autoPlayVideo, 3000);
+        console.log("[vplayx] URL changed");
+
+        setTimeout(scan, 500);
+        setTimeout(scan, 1000);
+        setTimeout(scan, 2000);
     }
 });
 
@@ -42,5 +93,4 @@ observer.observe(document.documentElement, {
     subtree: true
 });
 
-window.addEventListener('load', autoPlayVideo);
-autoPlayVideo();
+scan();
