@@ -18,4 +18,9 @@ to get started:
 for more infomation check:
                     vplayx/content.js
 
-you are welcome.
+|==========================================================================|
+| NOTE: YOU MUST PLAY THE FIRST VIDEO FOR THE EXTENSION TO WORK AS NEEDED  |
+|       THEN THE NEXT VIDEOS WOULD BE AUTO PLAYED FOR YOU                  |
+|==========================================================================|
+
+You are welcome.
