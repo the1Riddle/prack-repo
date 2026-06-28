@@ -6,11 +6,19 @@
   "permissions": [
     "activeTab"
   ],
+  "host_permissions": [
+    "https://digikenacademy.africa/*",
+    "https://www.digikenacademy.africa/*"
+  ],
   "content_scripts": [
     {
-      "matches": ["https://www.digikenacademy.africa/*"], 
+      "matches": [
+        "https://digikenacademy.africa/*",
+        "https://www.digikenacademy.africa/*"
+      ],
       "js": ["content.js"],
-      "run_at": "document_start"
+      "all_frames": true,
+      "run_at": "document_idle"
     }
   ]
 }
