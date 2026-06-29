@@ -41,11 +41,14 @@ function goToNextTopic() {
     );
 
     if (!nextButton) {
-        console.log("[vplayx] Next Topic button not found");
+        console.log("[vplayx] Course complete?");
         return;
     }
 
-    console.log("[vplayx] Clicking Next Topic");
+    if (nextButton.disabled || nextButton.ariaDisabled === "true") {
+        console.log("[vplayx] Last lesson reached");
+        return;
+    }
 
     nextButton.click();
 }
